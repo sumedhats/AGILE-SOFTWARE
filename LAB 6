@@ -1,0 +1,68 @@
+courses = {}
+
+def add_course(course_name):
+    if course_name not in courses:
+        courses[course_name] = []
+        print("Course added successfully")
+    else:
+        print("Course already exists")
+
+
+def enroll_student(course_name, student_name):
+    if course_name in courses:
+        courses[course_name].append(student_name)
+        print("Student enrolled successfully")
+    else:
+        print("Course not found")
+
+
+def drop_course(course_name, student_name):
+    if course_name in courses:
+        if student_name in courses[course_name]:
+            courses[course_name].remove(student_name)
+            print("Student dropped from course")
+        else:
+            print("Student not enrolled")
+    else:
+        print("Course not found")
+
+
+def view_courses():
+    for course, students in courses.items():
+        print("Course:", course)
+        print("Students:", students)
+
+
+while True:
+    print("\n1. Add Course")
+    print("2. Enroll Student")
+    print("3. Drop Course")
+    print("4. View Courses")
+    print("5. Exit")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "1":
+        course = input("Enter course name: ")
+        add_course(course)
+
+    elif choice == "2":
+        course = input("Enter course name: ")
+        student = input("Enter student name: ")
+        enroll_student(course, student)
+
+    elif choice == "3":
+        course = input("Enter course name: ")
+        student = input("Enter student name: ")
+        drop_course(course, student)
+
+    elif choice == "4":
+        view_courses()
+
+    elif choice == "5":
+        print("Exiting program")
+        break
+
+    else:
+        print("Invalid choice")
+        
